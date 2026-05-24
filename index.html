@@ -1,0 +1,493 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>KAIZYE STORE | PREMIUM FILES</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: radial-gradient(circle at 20% 30%, #0a1128, #020617);
+            font-family: 'Inter', sans-serif;
+            color: #eef5ff;
+            padding: 1.5rem 1rem 3rem;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        /* efek glitch / noise animasi latar */
+        body::before {
+            content: "";
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: repeating-linear-gradient(0deg, rgba(0,255,255,0.02) 0px, rgba(0,255,255,0.02) 2px, transparent 2px, transparent 6px);
+            pointer-events: none;
+            z-index: 5;
+        }
+
+        /* efek blur neon mengambang */
+        .orb {
+            position: fixed;
+            width: 50vw;
+            height: 50vw;
+            background: radial-gradient(circle, rgba(0,180,255,0.2), transparent);
+            border-radius: 50%;
+            filter: blur(60px);
+            z-index: 0;
+            pointer-events: none;
+        }
+        .orb1 { top: -20vh; left: -20vw; }
+        .orb2 { bottom: -10vh; right: -15vw; background: radial-gradient(circle, rgba(0,255,200,0.15), transparent); }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 10;
+        }
+
+        /* header shine */
+        .header {
+            text-align: center;
+            margin-bottom: 2rem;
+            animation: fadeDown 0.8s ease;
+        }
+        .badge {
+            background: #0f2b3d;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            backdrop-filter: blur(8px);
+            background: rgba(0, 120, 255, 0.2);
+            border: 1px solid rgba(0, 200, 255, 0.5);
+            padding: 0.5rem 1.5rem;
+            border-radius: 100px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            letter-spacing: 1px;
+            margin-bottom: 1rem;
+        }
+        .badge i {
+            color: #3b82f6;
+        }
+        h1 {
+            font-size: 2.7rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, #FFFFFF, #3b82f6, #00e0ff);
+            background-clip: text;
+            -webkit-background-clip: text;
+            color: transparent;
+            text-shadow: 0 0 15px rgba(0,160,255,0.3);
+        }
+        .sub {
+            color: #9ab3d5;
+            margin-top: 0.5rem;
+            font-weight: 500;
+        }
+        .contact-bar {
+            background: rgba(15, 30, 55, 0.7);
+            backdrop-filter: blur(12px);
+            border-radius: 2rem;
+            padding: 1rem 1.8rem;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 2rem;
+            margin: 1.5rem 0 2rem;
+            border: 1px solid rgba(59,130,246,0.5);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+        }
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-weight: 600;
+        }
+        .contact-item i {
+            font-size: 1.6rem;
+            color: #3b82f6;
+        }
+        .whatsapp-btn {
+            background: #25D366;
+            color: #0a2a1a;
+            padding: 0.3rem 1rem;
+            border-radius: 40px;
+            font-weight: bold;
+            text-decoration: none;
+            transition: 0.2s;
+        }
+        .tele-btn {
+            background: #1da1f2;
+            color: white;
+            padding: 0.3rem 1rem;
+            border-radius: 40px;
+            font-weight: bold;
+            text-decoration: none;
+        }
+
+        /* categories grid */
+        .category {
+            margin-bottom: 2.8rem;
+        }
+        .cat-title {
+            font-size: 1.7rem;
+            font-weight: 700;
+            margin-bottom: 1.2rem;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            border-left: 5px solid #3b82f6;
+            padding-left: 1rem;
+            letter-spacing: -0.3px;
+        }
+        .cat-title i {
+            color: #3b82f6;
+            font-size: 1.6rem;
+        }
+        .card-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 1.4rem;
+        }
+        .card {
+            background: rgba(10, 20, 40, 0.55);
+            backdrop-filter: blur(8px);
+            border-radius: 1.8rem;
+            border: 1px solid rgba(59,130,246,0.4);
+            transition: all 0.25s ease;
+            padding: 1.2rem;
+            display: flex;
+            flex-direction: column;
+            box-shadow: 0 10px 20px -5px rgba(0,0,0,0.4);
+            position: relative;
+            overflow: hidden;
+        }
+        .card:hover {
+            transform: translateY(-5px);
+            border-color: #3b82f6;
+            box-shadow: 0 20px 30px -10px rgba(0,100,255,0.3);
+            background: rgba(15, 35, 65, 0.7);
+        }
+        .card::after {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 3px;
+            background: linear-gradient(90deg, transparent, #3b82f6, #00ffff, transparent);
+            transition: 0.5s;
+        }
+        .card:hover::after {
+            left: 0;
+        }
+        .file-name {
+            font-weight: 800;
+            font-size: 1.15rem;
+            letter-spacing: -0.2px;
+            margin-bottom: 0.5rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            flex-wrap: wrap;
+        }
+        .price {
+            background: #0a2a3a;
+            padding: 0.2rem 0.7rem;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            font-weight: 700;
+            color: #7dd3fc;
+            border: 1px solid #3b82f6;
+        }
+        .desc {
+            font-size: 0.75rem;
+            opacity: 0.7;
+            margin: 0.5rem 0 0.8rem;
+        }
+        .btn-buy {
+            margin-top: auto;
+            background: linear-gradient(95deg, #1e3a8a, #2563eb);
+            border: none;
+            color: white;
+            font-weight: 700;
+            padding: 0.6rem 1rem;
+            border-radius: 2rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            transition: 0.2s;
+            font-size: 0.85rem;
+            width: 100%;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+        }
+        .btn-buy:hover {
+            background: linear-gradient(95deg, #2563eb, #3b82f6);
+            transform: scale(0.98);
+            gap: 14px;
+            box-shadow: 0 0 10px #3b82f6;
+        }
+        .note-section {
+            background: rgba(0, 0, 0, 0.5);
+            border-radius: 1.5rem;
+            padding: 1.4rem;
+            margin-top: 2.5rem;
+            border-left: 4px solid #f97316;
+            font-weight: 500;
+            backdrop-filter: blur(4px);
+        }
+        .footer-links {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+        .channel {
+            background: #1e293b;
+            border-radius: 40px;
+            padding: 0.5rem 1.2rem;
+            transition: 0.2s;
+            text-decoration: none;
+            color: white;
+            font-weight: 500;
+        }
+        .channel:hover {
+            background: #2d3a5e;
+            transform: translateY(-2px);
+        }
+        @keyframes fadeDown {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        @media (max-width: 680px) {
+            h1 { font-size: 1.8rem; }
+            .cat-title { font-size: 1.3rem; }
+            .card-grid { grid-template-columns: 1fr; }
+        }
+        .fa-bolt {
+            animation: pulse 1.5s infinite;
+        }
+        @keyframes pulse {
+            0% { text-shadow: 0 0 0 #00a6ff; opacity: 0.8; }
+            100% { text-shadow: 0 0 8px #3b82f6; opacity: 1; }
+        }
+        /* scrollbar */
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: #0f172a; }
+        ::-webkit-scrollbar-thumb { background: #3b82f6; border-radius: 10px; }
+    </style>
+</head>
+<body>
+<div class="orb orb1"></div>
+<div class="orb orb2"></div>
+<div class="container">
+    <div class="header">
+        <div class="badge">
+            <i class="fas fa-crown"></i> <span>𝗞𝗔𝗜𝗭𝗬𝗘 𝗦𝗧𝗢𝗥𝗘 • 𝗥𝗘𝗔𝗟 𝗨𝗣𝗗𝗔𝗧𝗘𝗦</span> <i class="fas fa-bolt"></i>
+        </div>
+        <h1>𝙆𝘼𝙄𝙕𝙔𝙀 𝙎𝙏𝙊𝙍𝙀 <span style="color:#2dd4bf">| 𝙁𝙄𝙇𝙀 𝙉𝙀𝙒</span></h1>
+        <div class="sub">💎 𝗕𝗨𝗬 𝗙𝗜𝗟𝗘? 𝗣𝗠 𝗦𝗜𝗡𝗜 ⚠️ 𝗔𝗨𝗧𝗢 𝗖𝗛𝗔𝗧 𝗪𝗛𝗔𝗧𝗦𝗔𝗣𝗣</div>
+    </div>
+
+    <div class="contact-bar">
+        <div class="contact-item"><i class="fab fa-whatsapp"></i> +62 882-2928-6129 <span class="whatsapp-btn" id="waAdminBtn"><i class="fab fa-whatsapp"></i> ADMIN WA</span></div>
+        <div class="contact-item"><i class="fab fa-telegram"></i> t.me/KAIZYE_STORE <a href="https://t.me/KAIZYE_STORE" target="_blank" class="tele-btn"><i class="fab fa-telegram"></i> CHAT</a></div>
+    </div>
+
+    <!-- ============================== -->
+    <!-- LIST PRODUK (berbeda dari referensi, dengan efek & otomatis chat) -->
+    <!-- ============================== -->
+
+    <!-- BEST SELLER -->
+    <div class="category">
+        <div class="cat-title"><i class="fas fa-fire"></i> 𝗙𝗜𝗟𝗘 𝗕𝗘𝗦𝗧 𝗦𝗘𝗟𝗟𝗘𝗥</div>
+        <div class="card-grid" id="cat-best"></div>
+    </div>
+    <div class="category">
+        <div class="cat-title"><i class="fas fa-skull"></i> 𝗙𝗜𝗟𝗘𝗦 𝗔𝗡𝗢𝗠𝗔𝗟𝗜</div>
+        <div class="card-grid" id="cat-anomali"></div>
+    </div>
+    <div class="category">
+        <div class="cat-title"><i class="fas fa-crosshairs"></i> 𝗛𝗘𝗔𝗗𝗟𝗢𝗖𝗞</div>
+        <div class="card-grid" id="cat-headlock"></div>
+    </div>
+    <div class="category">
+        <div class="cat-title"><i class="fas fa-dragon"></i> 𝗘𝗭 𝗗𝗥𝗔𝗚</div>
+        <div class="card-grid" id="cat-ezdrag"></div>
+    </div>
+    <div class="category">
+        <div class="cat-title"><i class="fas fa-bullseye"></i> 𝗗𝗥𝗔𝗚 𝗛𝗦</div>
+        <div class="card-grid" id="cat-draghs"></div>
+    </div>
+    <div class="category">
+        <div class="cat-title"><i class="fas fa-robot"></i> 𝗔𝗜𝗠𝗟𝗢𝗖𝗞 & 𝗩𝗜𝗣</div>
+        <div class="card-grid" id="cat-aimlock"></div>
+    </div>
+    <div class="category">
+        <div class="cat-title"><i class="fas fa-magic"></i> 𝗔𝗜𝗠𝗕𝗢𝗧 𝗩𝗩𝗜𝗣 𝗚𝗔𝗖𝗢𝗥</div>
+        <div class="card-grid" id="cat-aimbot"></div>
+    </div>
+    <div class="category">
+        <div class="cat-title"><i class="fas fa-cube"></i> 🔥𝗛𝗢𝗟𝗢𝗚𝗥𝗔𝗠🔥 & 𝗬𝗧𝗧𝗔</div>
+        <div class="card-grid" id="cat-holo"></div>
+    </div>
+    <div class="category">
+        <div class="cat-title"><i class="fas fa-credit-card"></i> 𝗔𝗟𝗟 𝗣𝗔𝗬𝗠𝗘𝗡𝗧 & 𝗦𝗔𝗟𝗨𝗥𝗔𝗡</div>
+        <div class="card-grid" id="cat-payment"></div>
+    </div>
+
+    <div class="note-section">
+        <i class="fas fa-exclamation-triangle" style="color:#f97316;"></i> <strong>*NOTE*</strong> <br>
+        ADMIN HANYA MENGIRIM 1X JADI JAGA BAIK BAIK FILENYA. <br>
+        ⚡ Setiap klik tombol <strong>"BELI FILE → CHAT ADMIN"</strong> akan otomatis mengirim pesan ke WhatsApp dengan format: <br>
+        <code style="background:#00000070; padding:4px 8px; border-radius:12px;">Halo Kak, saya ingin order file: [NAMA FILE] - Harga [HARGA]</code> <br>
+        +62 882-2928-6129 (Jika OFF bisa lewat Telegram).
+    </div>
+
+    <div class="footer-links">
+        <a href="https://whatsapp.com/channel/0029VbCdJuNDZ4LT4arD1H3v" target="_blank" class="channel"><i class="fab fa-whatsapp"></i> SHARE FILE FREE</a>
+        <a href="https://whatsapp.com/channel/0029Vb72gOz4dTnLFa0Gen0G" target="_blank" class="channel"><i class="fab fa-whatsapp"></i> TESTY CHANNEL</a>
+        <a href="https://chat.whatsapp.com/BQQzBW1HCeH322ksGLbuII" target="_blank" class="channel"><i class="fab fa-whatsapp"></i> GB TERBUKA</a>
+    </div>
+    <div style="text-align: center; margin-top: 2rem; font-size: 12px; opacity: 0.6;">
+        © 2025 KAIZYE STORE • BLUE THEME • PREMIUM FILES
+    </div>
+</div>
+
+<script>
+    // data produk sesuai list yang diberikan, dengan harga dan nama menarik
+    const productsData = {
+        bestseller: [
+            { name: "𝗔𝗜𝗠 𝗟𝗢𝗖𝗞 𝗕𝗘𝗦𝗧 𝗦𝗘𝗟𝗟𝗘𝗥", price: "5K" },
+            { name: "𝗔𝗜𝗠𝗕𝗢𝗧 𝗦𝗨𝗣𝗘𝗥 𝗩𝟭", price: "5K" },
+            { name: "𝗔𝗜𝗠𝗕𝗢𝗧 𝗦𝗨𝗣𝗘𝗥 𝗩𝟮", price: "10K" }
+        ],
+        anomali: [
+            { name: "𝗔𝗜𝗠𝗟𝗢𝗖𝗞 𝗔𝗡𝗢𝗠𝗔𝗟𝗜", price: "5K" },
+            { name: "𝗔𝗜𝗠𝗕𝗢𝗧 𝗔𝗡𝗢𝗠𝗔𝗟𝗜", price: "5K" },
+            { name: "𝗔𝗡𝗢𝗠𝗔𝗟𝗜 𝗙𝗜𝗟𝗘𝗦 🥶", price: "15K" },
+            { name: "AIM RELATED 100%", price: "50K" }
+        ],
+        headlock: [
+            { name: "𝗛𝗘𝗔𝗗𝗟𝗢𝗖𝗞 𝟲𝟱%", price: "10K" }, { name: "𝗛𝗘𝗔𝗗𝗟𝗢𝗖𝗞 𝟴𝟱%", price: "15K" },
+            { name: "𝗛𝗘𝗔𝗗𝗟𝗢𝗖𝗞 𝟵𝟬%", price: "25K" }, { name: "𝗛𝗘𝗔𝗗𝗟𝗢𝗖𝗞 𝟲𝟱% + 𝗛𝗢𝗟𝗢 𝗕𝗟𝗨𝗘", price: "15K" },
+            { name: "𝗛𝗘𝗔𝗗𝗟𝗢𝗖𝗞 𝟭𝟬𝟬% 𝗩𝟭", price: "25K" }, { name: "𝗛𝗘𝗔𝗗𝗟𝗢𝗖𝗞 𝟭𝟬𝟬% 𝗩𝟮", price: "30K" },
+            { name: "𝗛𝗘𝗔𝗗𝗟𝗢𝗖𝗞 𝗔𝗡𝗢𝗠𝗔𝗟𝗜", price: "50K" }
+        ],
+        ezdrag: [
+            { name: "𝗘𝗭 𝗗𝗥𝗔𝗚 𝟮.𝟬", price: "10K" }, { name: "𝗘𝗭 𝗗𝗥𝗔𝗚 𝟮.𝟭", price: "15K" },
+            { name: "𝗘𝗭 𝗗𝗥𝗔𝗚 𝟮.𝟯", price: "20K" }, { name: "𝗘𝗭 𝗗𝗥𝗔𝗚 𝟮.𝟭𝟬", price: "50K" },
+            { name: "𝗘𝗭 𝗗𝗥𝗔𝗚 𝗩𝗜𝗣", price: "15K" }
+        ],
+        draghs: [
+            { name: "𝗗𝗥𝗔𝗚 𝗛𝗦 𝟰𝟬%", price: "10K" }, { name: "𝗗𝗥𝗔𝗚 𝗛𝗦 𝟳𝟬%", price: "15K" },
+            { name: "𝗗𝗥𝗔𝗚 𝗛𝗦 𝟴𝟬%", price: "20K" }, { name: "𝗗𝗥𝗔𝗚 𝗛𝗦 𝟵𝟬%", price: "25K" },
+            { name: "𝗗𝗥𝗔𝗚 𝗛𝗦 𝟭𝟬𝟬% 𝗩𝟭", price: "30K" }, { name: "𝗗𝗥𝗔𝗚 𝗛𝗦 𝟭𝟬𝟬% 𝗩𝟮", price: "40K" },
+            { name: "DRAG EXTRIME 100%", price: "50K" }
+        ],
+        aimlock: [
+            { name: "𝗔𝗜𝗠 𝗟𝗢𝗖𝗞 𝟴𝟭%", price: "10K" }, { name: "𝗔𝗜𝗠 𝗟𝗢𝗖𝗞 𝟵𝟬%", price: "15K" },
+            { name: "𝗔𝗜𝗠 𝗟𝗢𝗖𝗞 𝟭𝟬𝟬% 𝗩𝟭", price: "20K" }, { name: "𝗔𝗜𝗠 𝗟𝗢𝗖𝗞 𝟭𝟬𝟬% 𝗩𝟮", price: "35K" },
+            { name: "𝗔𝗜𝗠 𝗟𝗢𝗖𝗞 𝟭𝟬𝟬% 𝗩𝟯", price: "45K" },
+            { name: "𝗔𝗜𝗠 𝗟𝗢𝗖𝗞 𝟴𝟬% 𝗩𝗜𝗣", price: "20K" }, { name: "𝗔𝗜𝗠 𝗟𝗢𝗖𝗞 𝟭𝟬𝟬% 𝗩𝗜𝗣", price: "25K" },
+            { name: "𝗔𝗜𝗠 𝗟𝗢𝗖𝗞 𝟭𝟬𝟬% 𝗩𝟭 𝗩𝗜𝗣", price: "35K" }, { name: "𝗔𝗜𝗠 𝗟𝗢𝗖𝗞 𝟭𝟬𝟬% 𝗩𝟮 𝗩𝗜𝗣", price: "40K" },
+            { name: "𝗔𝗜𝗠 𝗟𝗢𝗖𝗞 𝟭𝟬𝟬% 𝗩𝟯 𝗩𝗜𝗣", price: "50K" }
+        ],
+        aimbot: [
+            { name: "𝗔𝗜𝗠𝗕𝗢𝗧 𝗦𝗨𝗣𝗘𝗥 𝗩𝟭", price: "5K" }, { name: "𝗔𝗜𝗠𝗕𝗢𝗧 𝗦𝗨𝗣𝗘𝗥 𝗩𝟮", price: "10K" },
+            { name: "𝗔𝗜𝗠𝗕𝗢𝗧 𝗟𝗘𝗚𝗜𝗧 𝗩𝟭", price: "5K" }, { name: "𝗔𝗜𝗠𝗕𝗢𝗧 𝗟𝗘𝗚𝗜𝗧 𝗩𝟮", price: "10K" },
+            { name: "𝗔𝗜𝗠𝗕𝗢𝗧 𝗟𝗘𝗚𝗜𝗧 𝗩𝟯", price: "15K" }, { name: "𝗔𝗜𝗠𝗕𝗢𝗧 𝗟𝗘𝗚𝗜𝗧 𝗩𝟰", price: "20K" },
+            { name: "𝗟𝗢𝗖𝗞 𝗛𝗘𝗔𝗗 𝗩𝗜𝗣", price: "35K" }, { name: "𝗩𝟭 𝗘𝗫𝗧𝗥𝗔", price: "80K" }, { name: "𝗩𝟮 𝗘𝗫𝗧𝗥𝗔", price: "100K" },
+            { name: "𝗔𝗜𝗠 𝗕𝗢𝗧 + 𝗘𝗫𝗣", price: "65K" }, { name: "𝗔𝗜𝗠 𝗕𝗢𝗧 𝟭𝟬𝟬% 𝗩𝟯", price: "50K" },
+            { name: "𝗔𝗜𝗠 𝗕𝗢𝗧 𝟭𝟬𝟬% 𝗡𝗢 𝗗𝗥𝗔𝗚 𝗛𝗦", price: "150K" }, { name: "𝗔𝗜𝗠 𝗕𝗢𝗧 𝟴𝟬% + 𝗡𝗣𝗖", price: "80K" },
+            { name: "𝗡𝗣𝗖 𝗡𝗔𝗠𝗘 𝗢𝗡𝗟𝗬", price: "35K" }, { name: "𝗔𝗜𝗠𝗕𝗢𝗧 𝟭𝟬𝟬% + 𝗡𝗣𝗖 𝗡𝗔𝗠𝗘", price: "200K" },
+            { name: "𝗕𝗢𝗗𝗬 𝗛𝗦", price: "80K" }, { name: "𝗕𝗢𝗗𝗬 𝗛𝗦 𝗩𝗜𝗣", price: "100K" }
+        ],
+        holo: [
+            { name: "𝗛𝗢𝗟𝗢𝗚𝗥𝗔𝗠 𝟯𝗗 𝗔𝗟𝗟 𝗖𝗛𝗔𝗥", price: "35K" }, { name: "𝗛𝗢𝗟𝗢 𝗕𝗟𝗨𝗘 𝗩𝟮", price: "25K" },
+            { name: "𝗛𝗢𝗟𝗢 𝗚𝗥𝗘𝗘𝗡", price: "15K" }, { name: "𝗛𝗢𝗟𝗢 𝗦𝗔𝗕𝗘𝗥", price: "25K" }, { name: "𝗛𝗢𝗟𝗢 𝗣𝗥𝗘𝗠𝗜𝗨𝗠", price: "35K" },
+            { name: "𝗙𝗜𝗟𝗘 𝗚𝗘𝗡𝗢𝗦 𝟵𝟬%", price: "20K" }, { name: "𝗙𝗜𝗟𝗘 𝗚𝗘𝗡𝗢𝗦 𝟭𝟬𝟬%", price: "25K" },
+            { name: "𝗙𝗜𝗟𝗘 𝗔𝗜𝗠 𝗟𝗢𝗖𝗞 𝗫 𝗔𝗡𝗧𝗜 𝗟𝗔𝗚", price: "15K" }, { name: "𝗠𝗕 𝟲𝟬𝟬%", price: "50K" },
+            { name: "𝗚𝗥𝗔𝗙𝗜𝗞 𝗠𝗜𝗡𝗜𝗖𝗞𝗥𝗔𝗙𝗧 𝗔𝗟𝗟 𝗠𝗔𝗣", price: "20K" }, { name: "𝗣𝗘𝗟𝗜𝗖𝗜𝗡 𝗟𝗔𝗬𝗔𝗥 || 𝗞𝗔𝗜𝗭𝗬𝗘 𝗦𝗧𝗢𝗥𝗘 𝗥𝗘𝗔𝗟", price: "10K" }
+        ],
+        payment: [
+            { name: "𝗚𝗢𝗣𝗔𝗬 ✅", price: "Support" }, { name: "𝗗𝗔𝗡𝗔 ✅", price: "Support" },
+            { name: "𝗦𝗛𝗢𝗣𝗘𝗘𝗣𝗔𝗬 ✅", price: "Support" }, { name: "𝗤𝗥𝗜𝗦 ✅", price: "Support" },
+            { name: "𝗕𝗧 𝗔𝗞𝗨𝗡 𝗙𝗙✅", price: "Support" }
+        ]
+    };
+
+    // fungsi render kartu
+    function renderCategory(containerId, items) {
+        const container = document.getElementById(containerId);
+        if(!container) return;
+        container.innerHTML = "";
+        items.forEach(item => {
+            const card = document.createElement('div');
+            card.className = 'card';
+            // format harga label support beda
+            const priceLabel = (item.price === "Support") ? "💸 ALL PAYMENT" : `💰 ${item.price}`;
+            card.innerHTML = `
+                <div class="file-name">
+                    <span>${item.name}</span>
+                    <span class="price">${priceLabel}</span>
+                </div>
+                <div class="desc">⚡ File premium / injector / config</div>
+                <button class="btn-buy" data-name="${item.name.replace(/"/g, '&quot;')}" data-price="${item.price}">
+                    <i class="fab fa-whatsapp"></i> BELI FILE → CHAT ADMIN
+                </button>
+            `;
+            container.appendChild(card);
+        });
+        // tambahkan event listener untuk setiap tombol
+        document.querySelectorAll(`#${containerId} .btn-buy`).forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                e.preventDefault();
+                const namaFile = btn.getAttribute('data-name');
+                let harga = btn.getAttribute('data-price');
+                if(harga === "Support") harga = "Metode Pembayaran";
+                // Kirim chat WhatsApp otomatis dengan nama file + harga
+                const message = `Halo Kak, saya ingin order file: ${namaFile} - Harga ${harga}. Terima kasih KAIZYE STORE.`;
+                const phoneNumber = "6288229286129"; // nomor admin
+                const encodedMsg = encodeURIComponent(message);
+                const waLink = `https://wa.me/${phoneNumber}?text=${encodedMsg}`;
+                window.open(waLink, '_blank');
+            });
+        });
+    }
+
+    // menjalankan semua render
+    renderCategory("cat-best", productsData.bestseller);
+    renderCategory("cat-anomali", productsData.anomali);
+    renderCategory("cat-headlock", productsData.headlock);
+    renderCategory("cat-ezdrag", productsData.ezdrag);
+    renderCategory("cat-draghs", productsData.draghs);
+    renderCategory("cat-aimlock", productsData.aimlock);
+    renderCategory("cat-aimbot", productsData.aimbot);
+    renderCategory("cat-holo", productsData.holo);
+    renderCategory("cat-payment", productsData.payment);
+
+    // tombol admin WA langsung (nomor utama)
+    const waAdmin = document.getElementById('waAdminBtn');
+    if(waAdmin) {
+        waAdmin.addEventListener('click', () => {
+            const msg = "Halo Admin KAIZYE STORE, saya mau tanya2 file dan list lengkapnya. Terima kasih.";
+            window.open(`https://wa.me/6288229286129?text=${encodeURIComponent(msg)}`, '_blank');
+        });
+    }
+</script>
+</body>
+</html>
